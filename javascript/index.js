@@ -79,8 +79,8 @@ obtainInstruction('steak', 0)
       .then(()=>{
         document.querySelector("#steak").innerHTML += `<li>Stake is ready!</li>`    
         document.querySelector("#steakImg").removeAttribute("hidden");
-  }
-    )
+      })
+    .catch((err) => console.log("catch()", err));
   
 
 
@@ -110,19 +110,17 @@ makeBroccoli();
 function makeBrussels(){
   let response=[];
   for (i=0; i<=6; i++)
-  {
-    response.push(obtainInstruction('brusselsSprouts', i));
-   
-  }
-  // document.querySelector("#brusselsSprouts").innerHTML += `<li>Broccoli is ready!</li>`    
-  // document.querySelector("#brusselsSprouts").removeAttribute("hidden");
-  Promise.all(response).then((values => {
+      response.push(obtainInstruction('brusselsSprouts', i));
+
+  Promise.all(response)
+    .then((values => {
       values.forEach(element => {
          document.querySelector("#brusselsSprouts").innerHTML += `<li>${element} </li>`
       });
       document.querySelector("#brusselsSprouts").innerHTML += `<li>brusselsSprouts is ready!</li>`    
       document.querySelector("#brusselsSproutsImg").removeAttribute("hidden");
-  }))
+      }))
+    .catch((err) => console.log("catch()", err));
    
   
 }
